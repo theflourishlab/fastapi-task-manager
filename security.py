@@ -3,22 +3,10 @@ import os
 from dotenv import load_dotenv
 from fastapi import HTTPException, status, Depends
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from fastapi.middleware.cors import CORSMiddleware
-from main import app
 
 load_dotenv()
 
 security = HTTPBasic()
-
-# CORS Middleware
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 USERNAME = os.getenv("BASIC_AUTH_USERNAME")
 PASSWORD = os.getenv("BASIC_AUTH_PASSWORD")
