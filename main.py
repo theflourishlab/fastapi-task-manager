@@ -23,7 +23,7 @@ tasks_db = {}
 
 
 
-@app.post("/tasks", response_model=Task, status_code=status.HTTP_201_CREATED)
+@app.post("/tasks", response_model=[Task], status_code=status.HTTP_201_CREATED)
 def create_task(task: TaskBase, user: str = Depends(get_current_user)):
     """
     Create a new task.
@@ -44,7 +44,7 @@ def get_all_tasks(user: str = Depends(get_current_user)):
     """
     return list(tasks_db.values())
 
-@app.get("/tasks/{task_id}", response_model=Task)
+@app.get("/tasks/{task_id}", response_model=[Task])
 def get_task_by_id(task_id: str, user: str = Depends(get_current_user)):
     """
     Retrieve a specific task by its unique ID
